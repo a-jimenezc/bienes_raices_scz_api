@@ -1,10 +1,11 @@
-# API Documentation
+# API endpoint: estimador de precios de vivienda Santa Cruz de la Sierra
 
-This document provides an overview and usage instructions for the API endpoint implemented in the provided code.
+Este es el repositorio para la API implementada en **Flask** para el modelo predictor de precios de de la ciudad de Santa Cruz de la Sierra. Link al repositorio del proyecto original: 
+[bienes_raices_scz](https://github.com/a-jimenezc/bienes_raices_scz)
 
 ## Endpoint
 
-The API endpoint is accessible at the following URL:
+La API se puede acceder al siguiente link:
 
 ```
 GET /predict
@@ -14,19 +15,29 @@ GET /predict
 
 ### Method
 
-The API endpoint supports the HTTP GET method.
+La API admite el metodo HTTP GET.
 
-### Parameters
+### Parámetros
 
-The API expects a JSON payload with the following field:
+La API espera una *payload* JSON con el siguiente campo:
 
-- `input` (required): A list of input data for prediction.
+- `input` (requerido): una lista con los datos para el modelo.
 
-Example request payload:
+El orden y el tipo de las variables esperadas por el modelo son:
 
-```json
+**[número de ambientes, número de baños, terreno en m2, año de construcción, número de dormitorios, área de construcción, número de estacionamientos, latitud, longitud, tipo de propiedad, ciudad, zona]**
+
+- numéricas (integer/float): [número de ambientes, número de baños, terreno en m2, año de construcción, número de dormitorios, área de construcción, número de estacionamientos, latitud, longitud]
+- Categóricas (string):
+  - Categorías aceptadas para **tipo de propiedad**: "Departamento", "Casa", "Casa con Espacio Comercial", "Estudio/Monoambiente".
+  - Categorías aceptadas para **ciudad**: "Santa Cruz de la Sierra", "Porongo".
+  - Categorías aceptadas para **zona**: 'Norte', 'Sur', 'Este', 'Equipetrol/NorOeste', 'Urubo', 'Oeste', 'Sureste', 'Urbari', 'Centro (Casco Viejo)', 'ESTE', 'Noreste', 'Suroeste', 'Noroeste'.
+
+Ejemplo request payload:
+
+```python
 {
-  "input": ["data_point_1", "data_point_2", "data_point_3"]
+  "input": [5, 2, 60, 2018, 2, 60, 1, -17.785357, -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
 }
 ```
 
@@ -34,30 +45,30 @@ Example request payload:
 
 ### Success
 
-If the request is successful, the API will respond with a JSON object containing the prediction result.
+Si el request fue exitoso, la API responderá con un *JSON object* con el resultado del estimado.
 
 Example response:
 
 ```json
 {
-  "response": "prediction_result"
+  "response": "resultado_estimado"
 }
 ```
 
-### Errors
+### Errores
 
-In case of an error, the API will respond with an appropriate HTTP status code and an error message in the JSON format.
+En caso de error, la API responderá con un código de estado de HTTP apropiado en formato JSON. 
 
-Possible error responses:
+Posibles errores:
 
-- `400 Bad Request`: The request is invalid or missing the required `input` field.
+- `400 Bad Request`:  Request inválido o sin el requerido *input*.
   ```json
   {
     "error": "Invalid request. Missing 'input' field."
   }
   ```
 
-- `500 Internal Server Error`: An error occurred during the prediction process.
+- `500 Internal Server Error`: Un error ocurrió durante el proceso de estimación.
   ```json
   {
     "error": "An error occurred during prediction."
@@ -66,25 +77,18 @@ Possible error responses:
 
 ## Examples
 
-### cURL
-
-To make a prediction request using cURL, you can use the following command:
-
-```shell
-curl -X GET -H "Content-Type: application/json" -d '{"input": ["data_point_1", "data_point_2", "data_point_3"]}' http://localhost:5000/predict
-```
-
-Replace `http://localhost:5000` with the appropriate base URL if the API is hosted on a different server.
-
 ### Python
 
-You can also make a prediction request using Python and the `requests` library:
+Se puede hacer predicción utiizado la librería requests de Python:
 
 ```python
 import requests
 
 url = 'http://localhost:5000/predict'
-data = {'input': ['data_point_1', 'data_point_2', 'data_point_3']}
+data = {
+        'input': [5, 2, 60, 2018, 2, 60, 1, -17.785357, 
+                -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
+            }
 response = requests.get(url, json=data)
 
 if response.status_code == 200:
@@ -94,14 +98,19 @@ else:
     print(f"Error: {response.json()['error']}")
 ```
 
-Make sure to install the `requests` library if you haven't already:
 
-```shell
-pip install requests
-```
+## Deployment
 
-Replace `http://localhost:5000` with the appropriate base URL if the API is hosted on a different server.
+La API se colocó en producción utilizando el servivio *serverless* de Google **Cloud Run**.
 
-## Error Handling
+## Licencia
 
-If an unexpected error occurs during the prediction process, the API will log the error and respond with an appropriate error message and status code. The error details can be found in the API logs for debugging purposes.
+GNU General Public License v2.0
+
+## Autor
+
+Antonio Jimenez Caballero
+
+## Contacto
+
+[Linkedin](https://www.linkedin.com/in/antonio-jimnzc/)
