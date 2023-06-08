@@ -1,4 +1,4 @@
-# API endpoint: estimador de precios de vivienda Santa Cruz de la Sierra
+# API: Estimador de Precios de Vivienda Santa Cruz de la Sierra
 
 Este es el repositorio para la API implementada en **Flask** para el modelo predictor de precios de de la ciudad de Santa Cruz de la Sierra. Link al repositorio del proyecto original: 
 [bienes_raices_scz](https://github.com/a-jimenezc/bienes_raices_scz)
