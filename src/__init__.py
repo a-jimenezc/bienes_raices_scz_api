@@ -1,1 +1,1 @@
-from .predict import *
+from .predict import predict
