@@ -5,11 +5,11 @@ Este es el repositorio para la API implementada en **Flask** para el modelo pred
 
 ## Endpoint
 
-La API se puede acceder al siguiente link:
+La API se puede acceder mediante el siguiente link:
 
-```
-GET /predict
-```
+
+[https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict](https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict)
+
 
 ## Request
 
@@ -84,18 +84,18 @@ Se puede hacer predicción utiizado la librería requests de Python:
 ```python
 import requests
 
-url = 'http://localhost:5000/predict'
+url = 'https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict'
 data = {
         'input': [5, 2, 60, 2018, 2, 60, 1, -17.785357, 
                 -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
             }
-response = requests.get(url, json=data)
+response = requests.post(url, json=data)
 
 if response.status_code == 200:
     prediction = response.json()['response']
     print(f"Prediction: {prediction}")
 else:
-    print(f"Error: {response.json()['error']}")
+    print(f"Error: {response}")
 ```
 
 
