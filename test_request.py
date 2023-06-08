@@ -9,13 +9,14 @@ class PredictionTest(unittest.TestCase):
         URL = 'http://127.0.0.1:8080/predict'
         data = {"input": data_in}
 
-        r = requests.get(URL, json=data)
+        r = requests.post(URL, json=data)  # Use POST method instead of GET
 
         self.assertEqual(r.status_code, 200)
         response = r.json()
         self.assertIn('response', response)
         prediction = response['response']
         self.assertEqual(prediction, 70000)
+
 
 if __name__ == "__main__":
     unittest.main()

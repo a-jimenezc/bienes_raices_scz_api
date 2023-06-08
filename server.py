@@ -8,7 +8,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.route('/predict', methods=['POST'])  # Change to POST and specify methods
+@app.route('/predict', methods=['POST'])  # Use post method
 def make_prediction():
     try:
         # Validate and extract the input from the request
