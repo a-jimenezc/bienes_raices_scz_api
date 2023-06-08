@@ -8,7 +8,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.get('/predict')
+@app.route('/predict', methods=['POST'])  # Change to POST and specify methods
 def make_prediction():
     try:
         # Validate and extract the input from the request
@@ -16,7 +16,7 @@ def make_prediction():
         if 'input' not in data:
             return jsonify({'error': 'Invalid request. Missing "input" field.'}), 400
 
-        to_predict_list = data['input'] #without list
+        to_predict_list = data['input']
         logger.info(f'Received input: {to_predict_list}')
 
         # Perform prediction
