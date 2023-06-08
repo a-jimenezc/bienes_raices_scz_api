@@ -1,6 +1,7 @@
+import logging
 from flask import Flask, request, jsonify
 from src.predict import predict
-import logging
+
 
 app = Flask(__name__)
 
@@ -27,7 +28,7 @@ def make_prediction():
         response = {'response': prediction}
         return jsonify(response), 200
 
-    except Exception as e:
+    except Exception:
         logger.exception('Error occurred during prediction')
         return jsonify({'error': 'An error occurred during prediction.'}), 500
 
