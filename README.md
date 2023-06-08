@@ -86,8 +86,8 @@ import requests
 
 url = 'https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict'
 data = {
-        'input': [5, 2, 60, 2018, 2, 60, 1, -17.785357, 
-                -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
+        'input': [5, 2, 60, 2018, 2, 60, 1, -17.786, 
+                -63.216, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
             }
 response = requests.post(url, json=data)
 
