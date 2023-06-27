@@ -7,7 +7,7 @@ Este es el repositorio para la API implementada en **Flask** para el modelo pred
 
 La API se puede acceder mediante el siguiente link:
 
-**Nota importante: temporalmente fuerea de servicio, para mayor información escribir al correo de contacto.**
+**:loudspeaker: Nota: temporalmente fuerea de servicio, para mayor información escribir al correo de contacto.**
 
 [https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict](https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict)
 
