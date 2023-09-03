@@ -1,44 +1,44 @@
-# API: Estimador de Precios de Vivienda Santa Cruz de la Sierra
+# API: Santa Cruz de la Sierra Housing Price Estimator
 
-Este es el repositorio para la API implementada en **Flask** para el modelo predictor de precios de de la ciudad de Santa Cruz de la Sierra. Link al repositorio del proyecto original: 
-[bienes_raices_scz](https://github.com/a-jimenezc/bienes_raices_scz)
+English | [Español](README_es.md)
+
+This repository contains the Flask implementation of the API for the housing price prediction model for the city of Santa Cruz de la Sierra. (Link to the original project: [bienes_raices_scz](https://github.com/a-jimenezc/bienes_raices_scz)).
 
 ## Endpoint
 
-La API se puede acceder mediante el siguiente link:
+The API can be accessed using the following link:
 
-**:loudspeaker: Nota: temporalmente fuera de servicio, para mayor información escribir al correo de contacto.**
+**:loudspeaker: Note: temporarily out of service, for more information, please contact the provided email.**
 
 [https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict](https://bienes-raices-scz-api-ohh5653uva-uc.a.run.app/predict)
-
 
 ## Request
 
 ### Method
 
-La API admite el metodo HTTP GET.
+The API supports the HTTP GET method.
 
-### Parámetros
+### Parameters
 
-La API espera una *payload* JSON con el siguiente campo:
+The API expects a JSON payload with the following field:
 
-- `input` (requerido): una lista con los datos para el modelo.
+- `input` (required): a list containing data for the model.
 
-El orden y el tipo de las variables esperadas por el modelo son:
+The order and type of variables expected by the model are:
 
 **[número de ambientes, número de baños, terreno en m2, año de construcción, número de dormitorios, área de construcción, número de estacionamientos, latitud, longitud, tipo de propiedad, ciudad, zona]**
 
-- numéricas (integer/float): [número de ambientes, número de baños, terreno en m2, año de construcción, número de dormitorios, área de construcción, número de estacionamientos, latitud, longitud]
-- Categóricas (string):
-  - Categorías aceptadas para **tipo de propiedad**: "Departamento", "Casa", "Casa con Espacio Comercial", "Estudio/Monoambiente".
-  - Categorías aceptadas para **ciudad**: "Santa Cruz de la Sierra", "Porongo".
-  - Categorías aceptadas para **zona**: 'Norte', 'Sur', 'Este', 'Equipetrol/NorOeste', 'Urubo', 'Oeste', 'Sureste', 'Urbari', 'Centro (Casco Viejo)', 'ESTE', 'Noreste', 'Suroeste', 'Noroeste'.
+- Numeric (integer/float): [número de ambientes, número de baños, terreno en m2, año de construcción, número de dormitorios, área de construcción, número de estacionamientos, latitud, longitud]
+- Categorical (string):
+  - Accepted categories for **tipo de propiedad**: "Departamento", "Casa", "Casa con Espacio Comercial", "Estudio/Monoambiente".
+  - Accepted categories for **ciudad**: "Santa Cruz de la Sierra", "Porongo".
+  - Accepted categories for **zona**: 'Norte', 'Sur', 'Este', 'Equipetrol/NorOeste', 'Urubo', 'Oeste', 'Sureste', 'Urbari', 'Centro (Casco Viejo)', 'ESTE', 'Noreste', 'Suroeste', 'Noroeste'.
 
-Ejemplo request payload:
+Example request payload:
 
 ```python
 {
-  "input": [5, 2, 60, 2018, 2, 60, 1, -17.785357, -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
+    "input": [5, 2, 60, 2018, 2, 60, 1, -17.785357, -63.215448, "Departamento", "Santa Cruz de la Sierra", "Oeste"]
 }
 ```
 
@@ -46,30 +46,30 @@ Ejemplo request payload:
 
 ### Success
 
-Si el request fue exitoso, la API responderá con un *JSON object* con el resultado del estimado.
+If the request was successful, the API will respond with a JSON object containing the estimated result.
 
 Example response:
 
 ```json
 {
-  "response": "resultado_estimado"
+  "response": "estimated_result"
 }
 ```
 
-### Errores
+### Errors
 
-En caso de error, la API responderá con un código de estado de HTTP apropiado en formato JSON. 
+In case of an error, the API will respond with an appropriate HTTP status code in JSON format.
 
-Posibles errores:
+Possible errors:
 
-- `400 Bad Request`:  Request inválido o sin el requerido *input*.
+- `400 Bad Request`: Invalid request or missing the required 'input' field.
   ```json
   {
     "error": "Invalid request. Missing 'input' field."
   }
   ```
 
-- `500 Internal Server Error`: Un error ocurrió durante el proceso de estimación.
+- `500 Internal Server Error`: An error occurred during the estimation process.
   ```json
   {
     "error": "An error occurred during prediction."
@@ -80,7 +80,7 @@ Posibles errores:
 
 ### Python
 
-Se puede hacer predicción utiizado la librería requests de Python:
+You can make predictions using the Python requests library:
 
 ```python
 import requests
@@ -99,19 +99,18 @@ else:
     print(f"Error: {response}")
 ```
 
-
 ## Deployment
 
-La API se colocó en producción utilizando el servivio *serverless* de Google **Cloud Run**.
+The API was deployed in production using the serverless Google Cloud Run service.
 
-## Licencia
+## License
 
 GNU General Public License v2.0
 
-## Autor
+## Author
 
 Antonio Jimenez Caballero
 
-## Contacto
+## Contact
 
 [Linkedin](https://www.linkedin.com/in/antonio-jimnzc/)
